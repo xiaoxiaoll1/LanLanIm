@@ -1,0 +1,11 @@
+
+
+app-config:
+  userName: zijian
+  password: 12345678
+
+rest:
+  config:
+    login-url: http://127.0.0.1:9000//user/login
+    register-url: http://127.0.0.1:9000//user/register
+    offline-url: http://127.0.0.1:9000//user/offline

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package com.zj.protobuf;
+option java_outer_classname = "Chat";
+
+message ChatMsg {
+    int32 version = 1;
+    //协议版本号。第一版本：1，以此类推。
+
+    int64 id = 2;
+    //消息id
+
+    Module fromModule = 3;
+    //发送者模块
+
+    string fromUser = 4;
+    //发送者userId
+
+    string destUser = 5;
+    //接收者userId
+
+    int64 createTime = 6;
+    //发送时间
+
+    string msgBody = 7;
+    //消息体，json，格式由消息类型决定
+
+    optional string addition = 32;
+
+    enum Module {
+        SERVER = 0;
+        TRANSFER = 1;
+        CLIENT = 2;
+    }
+
+}
+

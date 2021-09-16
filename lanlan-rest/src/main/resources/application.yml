@@ -1,0 +1,112 @@
+# 配置 HTTPS 相关信息
+server:
+  port: 443
+  http-port: 8888 # 为了后面的配置使用，暂时无用
+  ssl:
+    enabled: true
+    key-store: classpath:tomcat_https.keystore # 证书文件
+    key-password: 123456  # 密码
+    key-store-type: JKS # 密钥库类型
+    key-alias: tomcat_https
+
+
+logging:
+  level:
+    com:
+      spring: info
+  pattern:
+    console: '%d{MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n'
+    file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
+  file:
+    name: log/lanlanIm.log
+
+
+spring:
+  #给项目来个名字
+  application:
+    name: lanlanim-rest
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 121.4.177.109
+    port: 5672
+    username: admin
+    password: admin
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.4.177.109:3307/lanlan_im?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    druid:
+      #druid 数据源专有配置
+      # 初始化大小，最小，最大
+      initialSize: 5
+      minIdle: 5
+      maxActive: 200
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 用来检测连接是否有效的sql，要求是一个查询语句
+      validationQuery: SELECT 1 FROM DUAL
+      # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      testWhileIdle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      testOnBorrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      testOnReturn: false
+      # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      poolPreparedStatements: true
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
+      max-pool-prepared-statement-per-connection-size: 50
+
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，比如不配置stat,我们在Druid的监控页面中就拿不到想要的信息。
+#      filters: stat,wall,log4j
+#      # 合并多个DruidDataSource的监控数据
+#      useGlobalDataSourceStat: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+  redis:
+    database: 3
+    host: 121.4.177.109
+    password: 123456
+    port: 6379
+    timeout: 0
+
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+rsa:
+  private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDOYdkuZxSzTLNkm7EcCfcHVxL0RtdPL4Dg60NO/6of/Zhz27ulrLJh8jfQp622XRpDt80bktxMIggfdnkeW6w/OPASissq9HnN3meSfwuHMgs8uwQuag8IHagMuxnYOtzdk2wcsXwOE38dhqqyuySigeqJBMhT/YmL87nCGqKLOhg2byeuNAn3TX3nTusNZvcmXgH9BYjSW/3pKL6/9GsatQxjphx/JM+C4Ymjl3ejin3vICsapcdeft3EbLT7sOQE5ZWm1C4qaxmib3T58gd0lOT/+IH20mvUcnqYNZlJ4RLR/Ra94TBu6boRAGTsGx32NKM1c/T47BPHJYaJ/XeNAgMBAAECggEAXXV2Ektf1mpPeqn+pEHm+g32aWSDMDrE1BX13xpsAhynIyBIc5gnF6/Gkti8E69Jq4zadzgkRt3Ka+UMqDC/acnw/ZSYuJUJa67hnDeoEssYx6GxHQuuTvCPH2TDKWZOipCuDrhZA07U65wGRPX2exj2CqJ9zXstBJGUd0/0d7NANcbDQUWve8P5iSi+9TiCnj7H1DWCcTCksGxEg2ABi6bjrdD0DXs5gug8MXJMR13N9AABC4cLylKLmpYwHhCSNtJ3YfSMpm898rOWk20Y6fAzSOz9q8q4Xgny7gzPfvvxsUYMocCkp0+m/jTCMOzeQyfrl5I8HUlr7sSgyaoywQKBgQD62NlkDI6BRm6Ywv7W/GGVDWBrSXkV6TznEkxIlAaFnrG9+hF1gU1tsgSvCvx+vBPdrWdZt37tc3zxACvlJVp8VF75Jo6cpd5A4nuPh5fSyQmG7guS8+RUivv22j7nCbP1ZeNytlDdWYlwzpWTvQgHnRqxfEcOJFRrZasEzpyMhQKBgQDSnysJEdyYZRIfLzsU9sBGEvmRgAF/OO+zEA9dG5ZaSEVaIzjkE5olkkILLhaZ74lZoR/9/MLmZYKJtsxsxmh7iM5k+yPRkLsc4LfMD3wjHbUbOgieIMojAvyJKLzNlFF52NujcddhoI+xDDbRENuCRnwrc86oWTGr7to9tJcRaQKBgD6aiAa0K4yP62IsqDU3X5M3d2zPNW0GfLCenHMwnkASzwE+u8S7tHtABnM5JrLqdXrJoBV/+imAvRnYlRvnKqIE3H8J5GWr77/5xiSYDogIrFwEZNcUD1QaK6/7398BSOxhtVYXsi7L/cUtiZ8JekuMJfFNtt4MqxTylq/ocKGRAoGBALZPwFihdWkUU5NatrF2xQfi9NPVEXamOhWtGR9m+cY8OIvFYUFLFmrfJvu2cSneBe3nYmHfoHT9+PhrmpetRlNoH/+Yw3Bq7wwYGAAyhyl+VX2zxjHaAB4+P4oaEROCBuSJqdTYfa6r5LVD9U8SYG9rw595JrDiQ/SnU5GF+B3BAoGBAOl9bJpynK2N6XAnEUXdnM/QCCBlMFjWC18184Ulyehz8rjfRcTm2hsaKQ4agqMBxUsfwvJQFkd7lltKTD9m+owQG6ARmj6U6FF9x2IYSHvt5V4Xdm2pDuo/Rnlna59px6Ucsr4d+EO5Oqu/XO4B+BAgVKit28ZLDYhjJxCfn94F
+  public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzmHZLmcUs0yzZJuxHAn3B1cS9EbXTy+A4OtDTv+qH/2Yc9u7payyYfI30Kettl0aQ7fNG5LcTCIIH3Z5HlusPzjwEorLKvR5zd5nkn8LhzILPLsELmoPCB2oDLsZ2Drc3ZNsHLF8DhN/HYaqsrskooHqiQTIU/2Ji/O5whqiizoYNm8nrjQJ9019507rDWb3Jl4B/QWI0lv96Si+v/RrGrUMY6YcfyTPguGJo5d3o4p97yArGqXHXn7dxGy0+7DkBOWVptQuKmsZom90+fIHdJTk//iB9tJr1HJ6mDWZSeES0f0WveEwbum6EQBk7Bsd9jSjNXP0+OwTxyWGif13jQIDAQAB
+
+
+jwt:
+  expiration: 3000000
+
+#用户关系-线程池参数配置
+relation-thread-pool:
+  core-pool-size: 10
+  max-pool-size: 1000
+  queue-capacity: 3000
+  keep-alive-seconds: 30
+
+
+zk-config:
+  zkServer: /server
+  zkAddress: 121.4.177.109:2181
+  zkConnectTimeout: 15000

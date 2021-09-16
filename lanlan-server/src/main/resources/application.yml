@@ -1,0 +1,14 @@
+app-config:
+  nettyPort: 8001
+
+
+
+
+
+
+
+zk-config:
+  zkServer: /server
+  zkTransfer: /transfer
+  zkAddress: 121.4.177.109:2181
+  zkConnectTimeout: 15000

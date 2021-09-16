@@ -1,0 +1,16 @@
+Java HotSpot(TM) 64-Bit Server VM (25.271-b09) for windows-amd64 JRE (1.8.0_271-b09), built on Sep 16 2020 19:14:59 by "" with MS VC++ 15.9 (VS2017)
+Memory: 4k page, physical 16119108k(4493992k free), swap 22792920k(3849628k free)
+CommandLine flags: -XX:-BytecodeVerificationLocal -XX:-BytecodeVerificationRemote -XX:InitialHeapSize=257905728 -XX:+ManagementServer -XX:MaxHeapSize=4126491648 -XX:+PrintGC -XX:+PrintGCTimeStamps -XX:TieredStopAtLevel=1 -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC -XX:-UseLargePagesIndividualAllocation 
+0.898: [GC pause (G1 Evacuation Pause) (young) 24M->3985K(246M), 0.0034899 secs]
+1.140: [GC pause (G1 Evacuation Pause) (young) 35M->8168K(246M), 0.0041043 secs]
+1.720: [GC pause (Metadata GC Threshold) (young) (initial-mark) 93M->19M(246M), 0.0089974 secs]
+1.729: [GC concurrent-root-region-scan-start]
+1.732: [GC concurrent-root-region-scan-end, 0.0029942 secs]
+1.732: [GC concurrent-mark-start]
+1.732: [GC concurrent-mark-end, 0.0001779 secs]
+1.733: [GC remark, 0.0025970 secs]
+1.735: [GC cleanup 19M->18M(246M), 0.0011060 secs]
+1.736: [GC concurrent-cleanup-start]
+1.736: [GC concurrent-cleanup-end, 0.0000121 secs]
+436.895: [GC pause (G1 Evacuation Pause) (young) 147M->23M(246M), 0.0139883 secs]
+1285.690: [GC pause (G1 Evacuation Pause) (young) 151M->22M(246M), 0.0078163 secs]

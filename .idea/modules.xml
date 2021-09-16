@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lanlan-bankend-common/lanlan-bankend-common.iml" filepath="$PROJECT_DIR$/lanlan-bankend-common/lanlan-bankend-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-client/lanlan-client.iml" filepath="$PROJECT_DIR$/lanlan-client/lanlan-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-common/lanlan-common.iml" filepath="$PROJECT_DIR$/lanlan-common/lanlan-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-login/lanlan-login.iml" filepath="$PROJECT_DIR$/lanlan-login/lanlan-login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-rest/lanlan-rest.iml" filepath="$PROJECT_DIR$/lanlan-rest/lanlan-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-server/lanlan-server.iml" filepath="$PROJECT_DIR$/lanlan-server/lanlan-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lanlan-transfer/lanlan-transfer.iml" filepath="$PROJECT_DIR$/lanlan-transfer/lanlan-transfer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lanlanIm.iml" filepath="$PROJECT_DIR$/.idea/lanlanIm.iml" />
+    </modules>
+  </component>
+</project>

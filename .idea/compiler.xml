@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="lanlan-server" />
+        <module name="lanlan-common" />
+        <module name="lanlan-rest" />
+        <module name="lanlan-transfer" />
+        <module name="lanlan-bankend-common" />
+        <module name="lanlan-client" />
+        <module name="lanlan-login" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lanlan-bankend-common" target="1.8" />
+      <module name="lanlan-client" target="1.8" />
+      <module name="lanlan-common" target="1.8" />
+      <module name="lanlan-login" target="1.8" />
+      <module name="lanlan-rest" target="1.8" />
+      <module name="lanlan-server" target="1.8" />
+      <module name="lanlan-transfer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="lanlan-bankend-common" options="-parameters" />
+      <module name="lanlan-client" options="-parameters" />
+      <module name="lanlan-common" options="-parameters" />
+      <module name="lanlan-login" options="-parameters" />
+      <module name="lanlan-rest" options="-parameters" />
+      <module name="lanlan-server" options="-parameters" />
+      <module name="lanlan-transfer" options="-parameters" />
+    </option>
+  </component>
+</project>

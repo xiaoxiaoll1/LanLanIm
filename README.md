@@ -1,2 +1,7 @@
 # LanLanIm
 分布式IM项目，socket通信通过netty，采用springcloud搭建后端，集成redis，rabbitmq等中间件，支持docker
+
+transfer必须做成长连接
+服务端调用通过rpc
+引入dubbo后服务端需要nginx做负载均衡
+最多拆分一个日志模块
